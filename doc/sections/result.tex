@@ -4,5 +4,40 @@
 
 \section{Experiments and Results}
 % TODO
+
+\subsection{Transfer Learning}
+The transfer learning model was trained over the training image datset using MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB of RAM. While the initial results from the trained classier were promising, by means of training data augmentation and optimization of the training parameters we are able to acheive a very accurate classifier while also reducing the training time by half. Table 1 depicts the effect of training parameters on the classifeir performance. The choice of the optimization parameters and their corresponding effects have been described briefly in the follwoing sub-sections.
+
+
+\begin{table}[h]
+\centering
+\caption{Training Parameter Analysis}
+\label{tab:my-table}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+\# & LR & Epochs & Batch Size & LR Drop Period & LR Drop Factor & Validation Accuracy & Test Accuracy & Time \\ \hline
+1 & 0.0005 & 8 & 512 & 2 & 0.9 & 92.83\% & 93.57\% & 22 min \\ \hline
+2 & 0.0005 & 8 & 256 & 2 & 0.9 & 92.61\% & 93.91\% & 22min  \\ \hline
+3 & 0.0005 & 8 & 128 & 2 & 0.9 & 96.20\% & 97.39\% & 25min  \\ \hline
+4 & 0.0005 & 8 & 128 & 2 & 0.6 & 97.50\% & 97.96\% & 25min  \\ \hline
+5 & 0.0005 & 4 & 128 & 2 & 0.6 & 95.54\% & 95.48\% & 13min  \\ \hline
+6 & 0.0001 & 4 & 128 & 2 & 0.6 & 98.91\% & 99.04\% & 13min  \\ \hline
+7 & 0.0001 & 4 & 128 & 1 & 0.6 & 99.35\% & 99.09\% & 12min  \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsubsection{Batch Size and Training Epochs Tradeoff}
+The size of mini-batches is the frequency of updates: the smaller the mini-batches the more will be the number of weight updates. As one would expect a single update with a big mini-batch is more accurate as compared to one with a small mini-batch. Moreover, bigger batches require lesser updates to reach the same level of accuracy. However, after the experimental evaluation it was observed that the smaller batches are preferable. This seems reasonable as smaller batches would imply smaller steps are taken towards convergence which in turn would minimize the chances of overshooting the optimal convergence point.
+
+\subsubsection{Learing rate}
+Learning rates of the network are one of the most influential parameters while training. Deep learning algorithms are trained using a stochastic gradient descent approaches like Adaptive Moment Optimization (ADAM), Root Mean Square Propogation (RMSProp), etc. The learning rate tells the optimizer how far to move the weights in the direction opposite to the gradient for a mini-batch. Low learning rates are reliable but require a large amount of training time as the steps needed to converge are very small. Large learning rates on the contrary are unreliable and generally converge quickly to suboptimal solutions.
+
+One of the commonly used approaches is to start the training with a relatively large learning rate, since in the beginning random weights are far from optimal, then periodically reduce the learning rate after a specified number of epochs. That is why a piecewise learning rate schedule was used during the training phase.
+
+\subsubsection{ADAM Optimizer}
+The ADAM Optimizer was used instead of the stochastic gradient descent (SGD) for updating the weights of the network, since ADAM is straightforward to implement, computationally efficient, well suited for problems that are large in terms of data and parameters and its hyperparameters require little tuning.
     
+
 \end{document}
