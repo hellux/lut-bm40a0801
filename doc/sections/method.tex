@@ -6,8 +6,12 @@
 \begin{document}
 
 \section{Method}
-In order to find a good method, multiple methods and approaches were tested
-empirically. All of the tested methods are described in this chapter.
+A set of different classifiers were implemented using MatLab. In order to find
+a good method, multiple methods and approaches were tested. How all of the
+methods were implemented is described below in this chapter.
+
+For some algorithms, existing built-in implementations of MatLab were used. In
+these cases functions that were used are referenced.
 
 
 \subsection{Preprocessing}
@@ -38,8 +42,12 @@ each dataset is listed in table \ref{tbl:datasets}.
 \end{table}
 
 \subsubsection{Image augmentation}
-% TODO
-
+Image augmentation was tested to see if it has a noticeable impact on the
+accuracy of the classifier. Image augmentation was performed by adding random
+variations of training samples to the training set using the
+\texttt{augmentedImageDatastore}\footnote{https://www.mathworks.com/help/deeplearning/ref/augmentedimagedatastore.html}.
+MatLab function. Variations that were used was horizontal reflections and
+displacements in X and Y axes.
 
 \subsection{Feature Extraction}
 % TODO
@@ -71,8 +79,17 @@ own bin. Uniform numbers are numbers where the binary number transitions from 0
 to 1 or 1 to 0 at most 2 times. For example "01000000" is uniform while
 "01010101" is not.
 
-\subsubsection{Speeded up robust features (SURF)}
-% TODO
+\subsubsection{Speeded Up Robust Features (SURF)}
+Speeded Up Robust Features or SURF was used as it is often useful for object
+recognition.
+
+SURF was extracted from the images by using the
+\texttt{bagOfFeatures}\footnote{https://se.mathworks.com/help/vision/ref/bagoffeatures.html}
+MatLab function. A bag of features was initially created with the training set.
+A histogram of the features for each image was then created with the
+\texttt{encode}\footnote{https://se.mathworks.com/help/vision/ref/bagoffeatures.encode.html}
+function for both the training set and the test set using the inital bag of
+features. 
 
 \subsubsection{AlexNet Convolutional Neural Network (CNN)}
 % TODO
@@ -89,10 +106,12 @@ Self-organizing maps were considered as they can provide a good visualization
 of the classifier which can help to analyze and improve the classification.
 
 Classification with SOM was performed by creating and training a
-two-dimensional map using the training dataset according to the SOM algorithm.
-As the SOM is typically an unsupervised algorithm the labels are not used while
-training the map. The labels are instead used afterwards to determine what tile
-is considered what class.
+two-dimensional map using the training dataset according with help of the
+MatLab functions
+\texttt{selforgmap}\footnote{https://www.mathworks.com/help/deeplearning/ref/selforgmap.html}
+and \texttt{train}. As the SOM is typically an unsupervised algorithm the
+labels are not used while training the map. The labels are instead used
+afterwards to determine what tile is considered what class.
 
 Each tile of the map is considered to belong to the class that has most
 classified samples for that tile. When classifying a new sample, it is placed
