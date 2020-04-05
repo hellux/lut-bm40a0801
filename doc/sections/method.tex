@@ -1,8 +1,91 @@
 \documentclass[doc/report.tex]{subfiles}
 
+% Describe the method which you have chosen for solving the task and explain
+% why you have chosen this particular method. 
+
 \begin{document}
 
 \section{Method}
+In order to find a good method, multiple methods approaches was tested
+empirically. All of the tested methods are described in this chapter.
+
+
+\subsection{Preprocessing}
 % TODO
+
+\subsubsection{Data partitioning}
+As the given dataset was already split into training and test sets, no further
+partitioning was performed. The training set was used for training and the test
+set was used for evaluation of the classifier. The number of each class from
+each dataset is listed in table \ref{tbl:datasets}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{l|rr|r}
+        class & training & test & all \\\hline
+        airplane    & 484   & 243   & 727 \\
+        car         & 645   & 323   & 968 \\
+        cat         & 590   & 295   & 885 \\
+        dog         & 468   & 234   & 702 \\
+        flower      & 562   & 281   & 843 \\
+        fruit       & 667   & 333   & 1000 \\
+        motorbike   & 525   & 263   & 788 \\
+        person      & 658   & 328   & 986 \\\hline
+        all         & 4599  & 2300  & 6899
+    \end{tabular}
+    \caption{Distribution of classes in datasets.}
+    \label{tbl:datasets}
+\end{table}
+
+\subsubsection{Image augmentation}
+% TODO
+
+
+\subsection{Feature Extraction}
+% TODO
+
+\subsubsection{Raw pixels}
+One approach that was tested was to simply use raw pixel data as features. It
+was done by converting the images to grayscale, resizing them to a fixed size
+and concatenating all of the pixel intensities to a feature vector. The images
+were resized to a size of 100x100 pixels resulting in 10000 features.
+
+\subsubsection{Local Binary Patterns (LBP)}
+% TODO
+
+\subsubsection{Speeded up robust features (SURF)}
+% TODO
+
+\subsubsection{AlexNet Convolutional Neural Network (CNN)}
+% TODO
+
+
+\subsection{Training and classification}
+% TODO
+
+\subsubsection{Support Vector Machine (SVM)}
+% TODO
+
+\subsubsection{Self-organizing map (SOM)}
+Self-organizing maps were considered as they can provide a good visualization
+of the classifier which can help to analyze and improve the classification.
+
+Classification with SOM was performed by creating and training a
+two-dimensional map using the training dataset according to the SOM algorithm.
+As the SOM is typically an unsupervised algorithm the labels are not used while
+training the map. The labels are instead used afterwards to determine what tile
+is considered what class.
+
+Each tile of the map is considered to belong to the class that has most
+classified samples for that tile. When classifying a new sample, it is placed
+into a tile by using the SOM and then classified as the class of which that
+tile belongs to.
+
+The SOM has one parameter that was adjusted; the dimensions of the map. As the
+problem has 8 classes the map must have at least 8 tiles to be able to
+differentiate between all classes. But each class could also have more than one
+tile as each class may have a set of subclasses. The dimensions was tested and
+set as low as possible without losing accuracy as the higher dimension the
+higher the training time is.
     
 \end{document}
