@@ -1,10 +1,42 @@
 \documentclass[doc/report.tex]{subfiles}
 
+% Present relevant methods and approaches from scientific publications.
+
 \begin{document}
 
 \section{Literature review}
-% TODO
 
-For example \cite{lee-art-som}.
+\subsubsection{AlexNet}
+AlexNet\cite{Alex}, which has been trained over a million images in the
+ImageNet dataset, is one of the most commonly used pretrained network for
+transfer learning. It can classify images into 1000 different categories such
+as pencil, coffee mug, keyboard etc. and outputs the probability for each of
+the object categories. The neural network has about 60 million parameters and
+650,000 neurons and consists of five convolutional layers which are followed by
+max-pooling layers and three fully-connected layers. To reduce overfitting in
+the fully-connected layers the authors had  employed dropout layers in
+conjuction with ReLU that proved to be very effective.
+
+\subsubsection{Transfer Learning}
+Until the inception of transfer learning, conventional machine learning
+approaches had been traditionally designed to work in isolation. They were
+designed to solve a particular task and had to be rebuilt from scratch once the
+feature space distribution changed. Transfer learning seeks to break this
+notion of task specificity wherein the knowledge acquired from one task could
+be utilized to solve another related one. Reusing a pretrained network as a
+starting point to learn a new task is a commonly used transfer learning
+approach.
+
+An example of the use of transfer learning in image processing was made by
+\cite{Ekat}. She had tested two different approaches with AlexNet to identify
+Saimaa Ringed Seals from each other. Firstly, it has been used for the task of
+segmenting the seal from its background. AlexNet is primarily used for feature
+extraction in this case. The second application of AlexNet is in the
+reidentification by means of the extarcted image patches of seal patterns. Once
+again AlexNet is used for feature extraction. Followed by either retrainig the
+exisiting CNN network or by means of an SVM classifier trained on the extracted
+features. The results obtained were largely encouraging, about 90 percent of
+the pictures were identified correctly. Although, SVM results were slightly
+better.
     
 \end{document}
