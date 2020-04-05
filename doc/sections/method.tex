@@ -6,7 +6,7 @@
 \begin{document}
 
 \section{Method}
-In order to find a good method, multiple methods approaches was tested
+In order to find a good method, multiple methods and approaches were tested
 empirically. All of the tested methods are described in this chapter.
 
 
@@ -51,7 +51,25 @@ and concatenating all of the pixel intensities to a feature vector. The images
 were resized to a size of 100x100 pixels resulting in 10000 features.
 
 \subsubsection{Local Binary Patterns (LBP)}
-% TODO
+Another feature vector that was used was Local Binary Patterns or LBP. It was
+computed by resizing each image to e.g. 100x100 pixels and then converting it
+into grayscale and dividing it into uniform cells, for example 10x10 pixels for
+each cell.
+
+And then for each cell; go through each pixel and calculate a number. The
+number is calculated by comparing the 8 neighbouring pixels clockwise to the
+pixel value. If the neighbour is larger or equal to the pixel then a 1 is
+written to the number, otherwise a zero. The final number is then interpreted
+as an 8-bit binary number. When the number for all pixels in the cell has been
+computed, a normalized histogram vector is created from the distribution of
+numbers within the cell. This is then performed for each cell and the final
+result is a concatenation of all created histograms.
+
+To achieve rotation invariance, the histogram bins were changed such that all
+non-uniform numbers end up in the same bin, while each uniform number has its
+own bin. Uniform numbers are numbers where the binary number transitions from 0
+to 1 or 1 to 0 at most 2 times. For example "01000000" is uniform while
+"01010101" is not.
 
 \subsubsection{Speeded up robust features (SURF)}
 % TODO
