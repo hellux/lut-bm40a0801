@@ -4,15 +4,32 @@
 
 \section{Experiments and Results}
 % TODO
+\subsection{AlexNet Feature Extraction}
+Table 1 describes the performance of various classifers that were trained based on the features extracted from the last fully connected layer (FC8) of the AlexNet. Image Augmnetation techniques such as translation and rotation seemed to be having a negative impact on the perfromance of these classifers and hence were not included in the results.
 
-\subsection{Transfer Learning}
-The transfer learning model was trained over the training image datset using MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB of RAM. While the initial results from the trained classier were promising, by means of training data augmentation and optimization of the training parameters we are able to acheive a very accurate classifier while also reducing the training time by half. Table 1 depicts the effect of training parameters on the classifeir performance. The choice of the optimization parameters and their corresponding effects have been described briefly in the follwoing sub-sections.
+\begin{table}[]
+\centering
+\caption{Accuracy of various trained classifers}
+\label{tab:my-table1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|}
+\hline
+Classifier            & Accuracy \\ \hline
+SVM                   & 99.04\%  \\ \hline
+KNN                   & 98.39\%  \\ \hline
+Naïve Bayes           & 98.39\%  \\ \hline
+Discriminant Analysis & 99.22\%  \\ \hline
+\end{tabular}%
+}
+\end{table}
 
+\subsection{Transfer Learning by retraining the Network}
+The transfer learning model was trained over the training image datset using MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB of RAM. While the initial results from the trained classier were promising, by means of training data augmentation and optimization of the training parameters we are able to acheive a very accurate classifier while also reducing the training time by half. Table 2 depicts the effect of training parameters on the classifeir performance. The choice of the optimization parameters and their corresponding effects have been described briefly in the follwoing sub-sections.
 
 \begin{table}[h]
 \centering
 \caption{Training Parameter Analysis}
-\label{tab:my-table}
+\label{tab:my-table2}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
