@@ -92,7 +92,19 @@ function for both the training set and the test set using the inital bag of
 features.
 
 \subsubsection{AlexNet Convolutional Neural Network (CNN)}
-% TODO
+%
+
+\subsection{Training Parameter Optimization}
+\subsubsection{Batch Size and Training Epochs Tradeoff}
+The size of mini-batches is the frequency of updates: the smaller the mini-batches the more will be the number of weight updates. As one would expect a single update with a big mini-batch is more accurate as compared to one with a small mini-batch. Moreover, bigger batches require lesser updates to reach the same level of accuracy. However, after the experimental evaluation it was observed that the smaller batches are preferable. This seems reasonable as smaller batches would imply smaller steps are taken towards convergence which in turn would minimize the chances of overshooting the optimal convergence point.
+
+\subsubsection{Learing rate}
+Learning rates of the network are one of the most influential parameters while training. Deep learning algorithms are trained using a stochastic gradient descent approaches like Adaptive Moment Optimization (ADAM), Root Mean Square Propogation (RMSProp), etc. The learning rate tells the optimizer how far to move the weights in the direction opposite to the gradient for a mini-batch. Low learning rates are reliable but require a large amount of training time as the steps needed to converge are very small. Large learning rates on the contrary are unreliable and generally converge quickly to suboptimal solutions.
+
+One of the commonly used approaches is to start the training with a relatively large learning rate, since in the beginning random weights are far from optimal, then periodically reduce the learning rate after a specified number of epochs. That is why a piecewise learning rate schedule was used during the training phase.
+
+\subsubsection{ADAM Optimizer}
+The ADAM Optimizer was used instead of the stochastic gradient descent (SGD) for updating the weights of the network, since ADAM is straightforward to implement, computationally efficient, well suited for problems that are large in terms of data and parameters and its hyperparameters require little tuning.
 
 \subsection{Training and classification}
 The task of classifying images based on the content is here approached with two
