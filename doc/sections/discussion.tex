@@ -3,5 +3,9 @@
 \begin{document}
 
 \section{Discussion}
+
+The results obtained by devising a classfier designed from the extracted features of a pre-trained network clearly performed the best. Although, the choice of the chosen classifier (SVM, Naive Bias etc.) didn't have a telling impact on the accuracy of the network. However, the superior performance of deeper networks can be seen by the fact that the features extracted by ResNet50 outperfromed those of ResNet18 which in turn outperformed the AlexNet Features. Hence, the depth of the pre-trained models were of clear importance while utilizing such a classification approach.
+
+The results obtained by retraining an AlexNet were comparable, if not better, to those obtained by the extarcted features from the the pre-trained models. This could be primarily attributed to the simialrity between the ImageNet Dataset and the provided Dataset. Hence, we can conclude that this appraoch could be more suitable than the previous approach only in case the two datasets have marked differences between them.  
     
 \end{document}
