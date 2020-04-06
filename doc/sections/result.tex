@@ -6,15 +6,42 @@
 
 \section{Experiments and Results}
 % TODO
+\subsection{Feature Extraction from Pretrained AlexNet}
+Table 1 describes the performance of various classifers that were trained based on the features extracted from the last fully connected layer (FC8) of the AlexNet and the last pooling layers of ResNet18 and ResNet50. Image Augmnetation techniques such as translation and rotation seemed to be having a negative impact on the perfromance of these classifers and hence were not included in the results.
 
-\subsection{Transfer Learning}
-The transfer learning model was trained over the training image datset using MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB of RAM. While the initial results from the trained classier were promising, by means of training data augmentation and optimization of the training parameters we are able to acheive a very accurate classifier while also reducing the training time by half. Table 1 depicts the effect of training parameters on the classifeir performance. The choice of the optimization parameters and their corresponding effects have been described briefly in the follwoing sub-sections.
+\begin{table}[]
+\centering
+\caption{Accuracy of various trained classifers}
+\label{tab:my-table1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|}
+\hline
+Pre-Trained Model & \multicolumn{1}{c|}{Classifier}            & \multicolumn{1}{c|}{Accuracy} \\ \hline
+AlexNet           & \multicolumn{1}{c|}{SVM}                   & \multicolumn{1}{c|}{99.04\%}  \\ \hline
+AlexNet           & \multicolumn{1}{c|}{KNN}                   & \multicolumn{1}{c|}{98.39\%}  \\ \hline
+AlexNet           & \multicolumn{1}{c|}{Naïve Bayes}           & \multicolumn{1}{c|}{98.39\%}  \\ \hline
+AlexNet           & \multicolumn{1}{c|}{Discriminant Analysis} & \multicolumn{1}{c|}{99.22\%}  \\ \hline
+ResNet18          & SVM                                        & 99.83\%                       \\ \hline
+ResNet18          & KNN                                        & 99.57\%                       \\ \hline
+ResNet18          & Naïve Bayes                                & 99.00\%                       \\ \hline
+ResNet18          & Discriminant Analysis                      & 99.83\%                       \\ \hline
+ResNet50          & SVM                                        & 99.96\%                       \\ \hline
+ResNet50          & KNN                                        & 99.76\%                       \\ \hline
+ResNet50          & Naïve Bayes                                & 99.26\%                       \\ \hline
+ResNet50          & Discriminant Analysis                      & 99.87\%                       \\ \hline
+\end{tabular}%
+}
+\end{table}
+}
+\end{table}
 
+\subsection{Retraining the pretrained AlexNet}
+The transfer learning model was trained over the training image datset using MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB of RAM. While the initial results from the trained classier were promising, by means of training data augmentation and optimization of the training parameters we are able to acheive a very accurate classifier while also reducing the training time by half. Table 2 depicts the effect of training parameters on the classifeir performance. The choice of the optimization parameters and their corresponding effects have been described briefly in the follwoing sub-sections.
 
 \begin{table}[h]
 \centering
 \caption{Training Parameter Analysis}
-\label{tab:my-table}
+\label{tab:my-table2}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
@@ -30,16 +57,7 @@ The transfer learning model was trained over the training image datset using MAT
 }
 \end{table}
 
-\subsubsection{Batch Size and Training Epochs Tradeoff}
-The size of mini-batches is the frequency of updates: the smaller the mini-batches the more will be the number of weight updates. As one would expect a single update with a big mini-batch is more accurate as compared to one with a small mini-batch. Moreover, bigger batches require lesser updates to reach the same level of accuracy. However, after the experimental evaluation it was observed that the smaller batches are preferable. This seems reasonable as smaller batches would imply smaller steps are taken towards convergence which in turn would minimize the chances of overshooting the optimal convergence point.
 
-\subsubsection{Learing rate}
-Learning rates of the network are one of the most influential parameters while training. Deep learning algorithms are trained using a stochastic gradient descent approaches like Adaptive Moment Optimization (ADAM), Root Mean Square Propogation (RMSProp), etc. The learning rate tells the optimizer how far to move the weights in the direction opposite to the gradient for a mini-batch. Low learning rates are reliable but require a large amount of training time as the steps needed to converge are very small. Large learning rates on the contrary are unreliable and generally converge quickly to suboptimal solutions.
-
-One of the commonly used approaches is to start the training with a relatively large learning rate, since in the beginning random weights are far from optimal, then periodically reduce the learning rate after a specified number of epochs. That is why a piecewise learning rate schedule was used during the training phase.
-
-\subsubsection{ADAM Optimizer}
-The ADAM Optimizer was used instead of the stochastic gradient descent (SGD) for updating the weights of the network, since ADAM is straightforward to implement, computationally efficient, well suited for problems that are large in terms of data and parameters and its hyperparameters require little tuning.
     
 \begin{table}[h]
 \centering

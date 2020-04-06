@@ -49,8 +49,27 @@ variations of training samples to the training set using the
 MatLab function. Variations that were used was horizontal reflections and
 displacements in X and Y axes.
 
-\subsection{Feature Extraction}
+\subsection{Using Pre-Trained Network}
+\subsubsection{Feature Extraction from Pretrained Networks}
+By means of a pre-trained model that has been trained on similar datsets we can build a very accurate model without the hassle of the training the network in a timesaving manner. This is accomplished by extracting the image features from thetrainig set based on the patterns that have been learnt by these pre-trained network while solving a different problem rather than starting the learning process from scratch. This way, this method leverage previous learnings and avoid starting from scratch and saves time.  
+
+\subsubsection{Retraining the Pre-Trained AlexNet}
+When one is retraining a pre-trained model for their own application, one starts by removing the original classifier, and adding a new classifier that fits the task at hand. During the transfer learning implementation the last three layers of AlexNet were modified
+to correspond to the objective of the current classification task. Namely, the number of classes in the Fully Connected Layer was set to the number of unique classes in the training set.
+
+\subsection{Training Parameter Optimization}
+\subsubsection{Batch Size and Training Epochs Tradeoff}
+The size of mini-batches is the frequency of updates: the smaller the mini-batches the more will be the number of weight updates. As one would expect a single update with a big mini-batch is more accurate as compared to one with a small mini-batch. Moreover, bigger batches require lesser updates to reach the same level of accuracy. However, after the experimental evaluation it was observed that the smaller batches are preferable. This seems reasonable as smaller batches would imply smaller steps are taken towards convergence which in turn would minimize the chances of overshooting the optimal convergence point.
+
+\subsubsection{Learing rate}
+Learning rates of the network are one of the most influential parameters while training. Deep learning algorithms are trained using a stochastic gradient descent approaches like Adaptive Moment Optimization (ADAM), Root Mean Square Propogation (RMSProp), etc. The learning rate tells the optimizer how far to move the weights in the direction opposite to the gradient for a mini-batch. Low learning rates are reliable but require a large amount of training time as the steps needed to converge are very small. Large learning rates on the contrary are unreliable and generally converge quickly to suboptimal solutions.
+
+One of the commonly used approaches is to start the training with a relatively large learning rate, since in the beginning random weights are far from optimal, then periodically reduce the learning rate after a specified number of epochs. That is why a piecewise learning rate schedule was used during the training phase.
+
+\subsubsection{ADAM Optimizer}
+The ADAM Optimizer was used instead of the stochastic gradient descent (SGD) for updating the weights of the network, since ADAM is straightforward to implement, computationally efficient, well suited for problems that are large in terms of data and parameters and its hyperparameters require little tuning.
 % TODO
+\subsection{Feature Extraction}
 
 \subsubsection{Raw pixels}
 One approach that was tested was to simply use raw pixel data as features. It
@@ -91,8 +110,8 @@ A histogram of the features for each image was then created with the
 function for both the training set and the test set using the inital bag of
 features.
 
-\subsubsection{AlexNet Convolutional Neural Network (CNN)}
-% TODO
+
+
 
 \subsection{Training and classification}
 The task of classifying images based on the content is here approached with two
@@ -169,8 +188,6 @@ information is also used as a feature. Use morphological operators and
 frequency transformations are possible solutions to create selector for the
 texture.
 
-\subsection{Architecture of CNN}
-% Will do it in some time
 
 \subsection{Self Organizing Map}
 The Self Organizing Map, SOM is a Neural Net model for dimension reduction.
