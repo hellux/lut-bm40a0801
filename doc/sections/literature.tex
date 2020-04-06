@@ -17,6 +17,20 @@ max-pooling layers and three fully-connected layers. To reduce overfitting in
 the fully-connected layers the authors had  employed dropout layers in
 conjuction with ReLU that proved to be very effective.
 
+A brief descriotion of the fuctions of various AlexNet layers is provided below:
+
+\begin{itemize}
+	\item Convolutional Layer puts the images from the previous layer through a set of convolutional filters which extract a particular feature;
+	\item ReLU Layer maps negative values to zero which allows faster training while maintaining the positive ones;
+	\item Pooling Layer performs downsampling, consequently, reduces the number of CNN parameters;
+    	\item Batch Normalization Layer speeds up training by normalizing each of the minibatches;
+    	\item Dropout Layer randomly sets the input elements to zero with a given probability and hence protects the network from overfitting;
+    	\item Fully Connected Layer identifies the larger patterns by combining all the features learned from the previous layers.
+\end{itemize}
+
+\subsubsection{ResNet}
+A residual neural network (ResNet) is an artificial neural network (ANN) of a kind that builds on constructs known from pyramidal cells in the cerebral cortex \cite{Res}. They are typically built to overcome the vanishing gradient problem of deep networks wherin the gradient becomes infinitively small due to repeated backpropogations which typically leads to degradation of the perfromance of the network. ResNet utilizes identity shortcut connection that skips one or more layers, or shortcuts to jump over some layers. Typical ResNet models are implemented with double- or triple- layer skips that contain nonlinearities (ReLU) and batch normalization in between
+
 \subsubsection{Transfer Learning}
 Until the inception of transfer learning, conventional machine learning
 approaches had been traditionally designed to work in isolation. They were
