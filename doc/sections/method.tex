@@ -53,7 +53,9 @@ displacements in X and Y axes.
 \subsubsection{Feature Extraction from Pretrained Networks}
 By means of a pre-trained model that has been trained on similar datsets we can build a very accurate model without the hassle of the training the network in a timesaving manner. This is accomplished by extracting the image features from thetrainig set based on the patterns that have been learnt by these pre-trained network while solving a different problem rather than starting the learning process from scratch. This way, this method leverage previous learnings and avoid starting from scratch and saves time.  
 
-\subsubsection{Transfer Learning Using AlexNet}
+\subsubsection{Retraining the Pre-Trained AlexNet}
+When one is retraining a pre-trained model for their own application, one starts by removing the original classifier, and adding a new classifier that fits the task at hand. During the transfer learning implementation the last three layers of AlexNet were modified
+to correspond to the objective of the current classification task. Namely, the number of classes in the Fully Connected Layer was set to the number of unique classes in the training set.
 
 \subsection{Training Parameter Optimization}
 \subsubsection{Batch Size and Training Epochs Tradeoff}
