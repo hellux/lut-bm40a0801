@@ -32,8 +32,6 @@ ResNet50          & Discriminant Analysis                      & 99.87\%        
 \end{tabular}%
 }
 \end{table}
-}
-\end{table}
 
 \subsection{Retraining the pretrained AlexNet}
 The transfer learning model was trained over the training image datset using MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB of RAM. While the initial results from the trained classier were promising, by means of training data augmentation and optimization of the training parameters we are able to acheive a very accurate classifier while also reducing the training time by half. Table 2 depicts the effect of training parameters on the classifeir performance. The choice of the optimization parameters and their corresponding effects have been described briefly in the follwoing sub-sections.
@@ -57,25 +55,26 @@ The transfer learning model was trained over the training image datset using MAT
 }
 \end{table}
 
-
+\subsection{Experiments with self-organizing map}
+A classifier using a SOM was implemented and tested with different features.
     
 \begin{table}[h]
-\centering
-\caption{Result of experiments, sorted by accuracy.}
-\label{tbl:feature}
-\begin{tabular}{lrlrr}
-    features & feature count & classifier & time (minutes) & accuracy \\\hline
-    AlexNet & 4096 & SOM 8x8 & 15 & 98\% \\
-    LBP 100x100/10 + SURF & 6400 & SOM 8x8 & ?? & 80\% \\
-    LBP 100x100/16 & 2891 & SOM 16x16 & 40 & 75\% \\
-    LBP 100x100/10 & 5900 & SOM 8x8 & 32 & 74\% \\
-    SURF & 500 & SOM 8x8 & 55 & 74\% \\
-    LBP 100x100/16 & 2891 & SOM 8x8 & 20 & 73\% \\
-    LBP 100x100/16 & 2891 & SOM 32x32 & 240 & 73\% \\
-    LBP 100x100/16 & 2891 & SOM 6x6 & 7 & 69\% \\
-    LBP 100x100/16 & 2891 & SOM 4x4 & 4 & 63\% \\
-    grayscale 100x100 & 10000 & SOM 8x8 & 40 & 60\% \\
-\end{tabular}%
+    \centering
+    \caption{Result of experiments, sorted by accuracy.}
+    \label{tbl:feature}
+    \begin{tabular}{lrlrr}
+        features & feature count & classifier & time (minutes) & accuracy \\\hline
+        AlexNet & 4096 & SOM 8x8 & 15 & 98\% \\
+        LBP 100x100/10 + SURF & 6400 & SOM 8x8 & ?? & 80\% \\
+        LBP 100x100/16 & 2891 & SOM 16x16 & 40 & 75\% \\
+        LBP 100x100/10 & 5900 & SOM 8x8 & 32 & 74\% \\
+        SURF & 500 & SOM 8x8 & 55 & 74\% \\
+        LBP 100x100/16 & 2891 & SOM 8x8 & 20 & 73\% \\
+        LBP 100x100/16 & 2891 & SOM 32x32 & 240 & 73\% \\
+        LBP 100x100/16 & 2891 & SOM 6x6 & 7 & 69\% \\
+        LBP 100x100/16 & 2891 & SOM 4x4 & 4 & 63\% \\
+        grayscale 100x100 & 10000 & SOM 8x8 & 40 & 60\% \\
+    \end{tabular}%
 \end{table}
 
 \end{document}
