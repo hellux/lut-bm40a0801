@@ -50,26 +50,63 @@ MatLab function. Variations that were used was horizontal reflections and
 displacements in X and Y axes.
 
 \subsection{Using Pre-Trained Network}
+% TODO intro
+
 \subsubsection{Feature Extraction from Pretrained Networks}
-By means of a pre-trained model that has been trained on similar datsets we can build a very accurate model without the hassle of the training the network in a timesaving manner. This is accomplished by extracting the image features from thetrainig set based on the patterns that have been learnt by these pre-trained network while solving a different problem rather than starting the learning process from scratch. This way, this method leverage previous learnings and avoid starting from scratch and saves time.  
+By means of a pre-trained model that has been trained on similar datsets we can
+build a very accurate model without the hassle of the training the network in a
+timesaving manner. This is accomplished by extracting the image features from
+thetrainig set based on the patterns that have been learnt by these pre-trained
+network while solving a different problem rather than starting the learning
+process from scratch. This way, this method leverage previous learnings and
+avoid starting from scratch and saves time.
 
 \subsubsection{Retraining the Pre-Trained AlexNet}
-When one is retraining a pre-trained model for their own application, one starts by removing the original classifier, and adding a new classifier that fits the task at hand. During the transfer learning implementation the last three layers of AlexNet were modified
-to correspond to the objective of the current classification task. Namely, the number of classes in the Fully Connected Layer was set to the number of unique classes in the training set.
+When one is retraining a pre-trained model for their own application, one
+starts by removing the original classifier, and adding a new classifier that
+fits the task at hand. During the transfer learning implementation the last
+three layers of AlexNet were modified to correspond to the objective of the
+current classification task. Namely, the number of classes in the Fully
+Connected Layer was set to the number of unique classes in the training set.
 
 \subsection{Training Parameter Optimization}
+% TODO intro
+
 \subsubsection{Batch Size and Training Epochs Tradeoff}
-The size of mini-batches is the frequency of updates: the smaller the mini-batches the more will be the number of weight updates. As one would expect a single update with a big mini-batch is more accurate as compared to one with a small mini-batch. Moreover, bigger batches require lesser updates to reach the same level of accuracy. However, after the experimental evaluation it was observed that the smaller batches are preferable. This seems reasonable as smaller batches would imply smaller steps are taken towards convergence which in turn would minimize the chances of overshooting the optimal convergence point.
+The size of mini-batches is the frequency of updates: the smaller the
+mini-batches the more will be the number of weight updates. As one would expect
+a single update with a big mini-batch is more accurate as compared to one with
+a small mini-batch. Moreover, bigger batches require lesser updates to reach
+the same level of accuracy. However, after the experimental evaluation it was
+observed that the smaller batches are preferable. This seems reasonable as
+smaller batches would imply smaller steps are taken towards convergence which
+in turn would minimize the chances of overshooting the optimal convergence
+point.
 
-\subsubsection{Learing rate}
-Learning rates of the network are one of the most influential parameters while training. Deep learning algorithms are trained using a stochastic gradient descent approaches like Adaptive Moment Optimization (ADAM), Root Mean Square Propogation (RMSProp), etc. The learning rate tells the optimizer how far to move the weights in the direction opposite to the gradient for a mini-batch. Low learning rates are reliable but require a large amount of training time as the steps needed to converge are very small. Large learning rates on the contrary are unreliable and generally converge quickly to suboptimal solutions.
+\subsubsection{Learning rate}
+Learning rates of the network are one of the most influential parameters while
+training. Deep learning algorithms are trained using a stochastic gradient
+descent approaches like Adaptive Moment Optimization (ADAM), Root Mean Square
+Propogation (RMSProp), etc. The learning rate tells the optimizer how far to
+move the weights in the direction opposite to the gradient for a mini-batch.
+Low learning rates are reliable but require a large amount of training time as
+the steps needed to converge are very small. Large learning rates on the
+contrary are unreliable and generally converge quickly to suboptimal solutions.
 
-One of the commonly used approaches is to start the training with a relatively large learning rate, since in the beginning random weights are far from optimal, then periodically reduce the learning rate after a specified number of epochs. That is why a piecewise learning rate schedule was used during the training phase.
+One of the commonly used approaches is to start the training with a relatively
+large learning rate, since in the beginning random weights are far from
+optimal, then periodically reduce the learning rate after a specified number of
+epochs. That is why a piecewise learning rate schedule was used during the
+training phase.
 
 \subsubsection{ADAM Optimizer}
-The ADAM Optimizer was used instead of the stochastic gradient descent (SGD) for updating the weights of the network, since ADAM is straightforward to implement, computationally efficient, well suited for problems that are large in terms of data and parameters and its hyperparameters require little tuning.
-% TODO
+The ADAM Optimizer was used instead of the stochastic gradient descent (SGD)
+for updating the weights of the network, since ADAM is straightforward to
+implement, computationally efficient, well suited for problems that are large
+in terms of data and parameters and its hyperparameters require little tuning.
+
 \subsection{Feature Extraction}
+% TODO intro
 
 \subsubsection{Raw pixels}
 One approach that was tested was to simply use raw pixel data as features. It
@@ -110,122 +147,10 @@ A histogram of the features for each image was then created with the
 function for both the training set and the test set using the inital bag of
 features.
 
-
-
-
 \subsection{Training and classification}
-The task of classifying images based on the content is here approached with two
-perspectives. Identify regions of the picture as a representation of some
-object. The other is the comparing technical features of picture without
-identification of objects in the picture. Such information is accessible from
-the picture. A database of objects in the training set is needed for the other.
 
-For classifying pictures based on objects they represent it is often needed to
-normalize intensity information in them. Histogram equalization brings
-properties of the objects more accessible and more independent from properties
-of images.
-
-To classify or cluster and classify images a method of comparing the vector of
-image data with other vectors is sometimes used with neural net solutions like
-CNN. To provide valid results, they are trained with a set of pictures. The net
-is given response about the correctness of the answer for each of the training
-pictures, and each picture is potentially used many times in the random order.
-Values of features and regions evolve in the net without user directly
-interfering. Other methods require more explicit information mining from the
-picture.
-
-\subsection{Feature extraction and region processing}
-A region, an area in the picture, is sometimes an identifiable object in the
-picture. Even if it is the goal to classify the main object of the picture,
-sub-objects are often the handle for the class. For example, with the
-information of the round objects the task of classification of the main object
-is simplified. Convolutional networks do the process sometimes implicitly.
-
-Generally, classification / training phase is faster or more accurate, if some
-feature extraction is done to make the process specific for the task.
-
-The color information, often Lab, grayscale intensities, statistical and
-frequency level information are examples of features of the whole picture. They
-are used for region analysis also.
-
-To get regions or image segments it is he histograms first. From intensity
-values of either color or grayscale, partitions separated from the rest, are
-potential regions. A binary image is separated, outline i.e. border is
-extracted. Remainder of the picture is returned to histogram and the process is
-repeated.
-
-Level sets and snakes are used to improve quality of the region. It is possible
-to get watertight borderlines without noise by applying those methods.
-
-Some candidates for the region features are convexity, cardinal line, normal
-lines of cl, statistics of length of normal lines, skeleton of the region,
-Area, length, width.
-
-The boundary is one of the primary sources for the feature mining. Examples of
-methods used with it are:
-
-\begin{itemize}
-    \item Chain Code, a vector of vectors describing segments of the boundary.
-        With them many indicators of the region are possible. Area, height,
-        width, cardinal lines and convexity are among possible results of the
-        function with chain code as a parameter.
-    \item Fourier descriptor, a complex valued vector about the boundary. It is
-        used to identify, scale, rotate, and translate the boundary for the
-        similarity measurement.
-    \item Skeleton of the region. Middle lines of the region evaluated from the
-        boundary. .
-    \item The Hough transformation allows the search of ridges, curves and
-        round or elliptical areas from the picture. Shapes and sizes are not
-        limited.
-    \item Morphological operators. Dilating and eroding binary images with
-        different kernels. . For example, to extraction of outlines or reduced
-        noise from the picture. Opening and closing operations combination of
-        two main processing styles
-\end{itemize}
-
-Also, the background is potentially processed as a region. The Texture
-information is also used as a feature. Use morphological operators and
-frequency transformations are possible solutions to create selector for the
-texture.
-
-
-\subsection{Self Organizing Map}
-The Self Organizing Map, SOM is a Neural Net model for dimension reduction.
-From training material each picture is associated with a feature vector. Number
-of pictures is the original dimension count and reduced dimension count is the
-number of the classes of the pictures are representing, like cars, cats and so
-on. For each class there is a weight vector in  the result space. The algorithm
-starts random input vector. Euclidean distance is evaluated to each weight
-vector, and nearest is considered the closest match. Weights of the feature
-dimensions of the closest weight vector are adjusted to minimize the average
-distance within the group.
-
-In SOM map space is number of weight vectors with the dimensionality of input
-vectors. In image processing dimensionality of the feature space. Weight
-vectors represent classes similarly to KNN-clustering. When a new vector, i.e.
-image is added to the system, Euclidean distances to weight vectors are
-evaluated. Weights of the closest class are adjusted with a function
-\eqref{eqn:som_w} to make the weight vector closer to the new vector.
-
-\begin{equation}
-    W_v(s+1) = W_v(s) + \theta(u, v, s) \cdot \alpha(s) \cdot (D(t) - W_v(s))
-    \label{eqn:som_w}
-\end{equation}
-
-\begin{itemize}
-    \item $W_v$: Weight vector closest to vector $v$
-    \item $\theta$: Distance function giving distance from $u$ to $v$ in step
-        $s$
-    \item $\alpha$: Learning rate function, it gets smaller when the space size
-        increases
-    \item $D$: Input vector indexed with $t$
-    \item $s$: step index
-    \item $u$: index to best matching class vector
-    \item $v$: index to a neuron in the goal space
-\end{itemize}
-
-\subsubsection{Support Vector Machine (SVM)}
-% TODO
+% TODO remaining classifiers? knn, svm, bayesian...
+%\subsubsection{Support Vector Machine (SVM)}
 
 \subsubsection{Self-organizing map (SOM)}
 Self-organizing maps were considered as they can provide a good visualization
