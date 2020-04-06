@@ -56,12 +56,12 @@ The transfer learning model was trained over the training image datset using MAT
 \end{table}
 
 \subsection{Experiments with self-organizing map}
-A classifier using a SOM was implemented and tested with different features.
+A classifier using SOM was implemented and tested with different features.  The
+results are shown in table \ref{tbl:som}. LBP $W$x$H$/$n$ means that the
+images were resized to WxH and then split into $n\times n$ cells.
     
 \begin{table}[h]
     \centering
-    \caption{Result of experiments, sorted by accuracy.}
-    \label{tbl:feature}
     \begin{tabular}{lrlrr}
         features & feature count & classifier & time (minutes) & accuracy \\\hline
         AlexNet & 4096 & SOM 8x8 & 15 & 98\% \\
@@ -75,6 +75,8 @@ A classifier using a SOM was implemented and tested with different features.
         LBP 100x100/16 & 2891 & SOM 4x4 & 4 & 63\% \\
         grayscale 100x100 & 10000 & SOM 8x8 & 40 & 60\% \\
     \end{tabular}%
+    \caption{Result of experiments, sorted by accuracy.}
+    \label{tbl:som}
 \end{table}
 
 \end{document}
