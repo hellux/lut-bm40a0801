@@ -1,5 +1,7 @@
 \documentclass[doc/report.tex]{subfiles}
 
+% Present the details of your experiments and their results.
+
 \begin{document}
 
 \section{Experiments and Results}
@@ -39,5 +41,23 @@ One of the commonly used approaches is to start the training with a relatively l
 \subsubsection{ADAM Optimizer}
 The ADAM Optimizer was used instead of the stochastic gradient descent (SGD) for updating the weights of the network, since ADAM is straightforward to implement, computationally efficient, well suited for problems that are large in terms of data and parameters and its hyperparameters require little tuning.
     
+\begin{table}[h]
+\centering
+\caption{Result of experiments, sorted by accuracy.}
+\label{tbl:feature}
+\begin{tabular}{lrlrr}
+    features & feature count & classifier & time (minutes) & accuracy \\\hline
+    AlexNet & 4096 & SOM 8x8 & 15 & 98\% \\
+    LBP 100x100/10 + SURF & 6400 & SOM 8x8 & ?? & 80\% \\
+    LBP 100x100/16 & 2891 & SOM 16x16 & 40 & 75\% \\
+    LBP 100x100/10 & 5900 & SOM 8x8 & 32 & 74\% \\
+    SURF & 500 & SOM 8x8 & 55 & 74\% \\
+    LBP 100x100/16 & 2891 & SOM 8x8 & 20 & 73\% \\
+    LBP 100x100/16 & 2891 & SOM 32x32 & 240 & 73\% \\
+    LBP 100x100/16 & 2891 & SOM 6x6 & 7 & 69\% \\
+    LBP 100x100/16 & 2891 & SOM 4x4 & 4 & 63\% \\
+    grayscale 100x100 & 10000 & SOM 8x8 & 40 & 60\% \\
+\end{tabular}%
+\end{table}
 
 \end{document}
