@@ -40,7 +40,7 @@ The color information, often Lab, grayscale intensities, statistical and
 frequency level information are examples of features of the whole picture. They
 are used for region analysis also.
 
-To get regions or image segments it is he histograms first. From intensity
+To get regions or image segments it is the histograms first. From intensity
 values of either color or grayscale, partitions separated from the rest, are
 potential regions. A binary image is separated, outline i.e. border is
 extracted. Remainder of the picture is returned to histogram and the process is
@@ -79,6 +79,10 @@ Also, the background is potentially processed as a region. The Texture
 information is also used as a feature. Use morphological operators and
 frequency transformations are possible solutions to create selector for the
 texture.
+
+In 2006, Herbert Bay et. al introduced SURF, a rotation-invariant point
+detector and descriptor for use in object recognition.\cite{bay-surf} It showed
+strong performance in comparison to previous algorithms at the time.
 
 \subsection{Self Organizing Map}
 The Self Organizing Map, SOM is a Neural Net model for dimension reduction.
