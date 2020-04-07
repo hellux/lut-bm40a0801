@@ -9,11 +9,10 @@
 \subsection{Feature Extraction from Pretrained AlexNet}
 Table 1 describes the performance of various classifers that were trained based on the features extracted from the last fully connected layer (FC8) of the AlexNet and the last pooling layers of ResNet18 and ResNet50. Image Augmnetation techniques such as translation and rotation seemed to be having a negative impact on the perfromance of these classifers and hence were not included in the results.
 
-\begin{table}[]
+\begin{table}[h]
 \centering
 \caption{Accuracy of various trained classifers}
 \label{tab:my-table1}
-\resizebox{\textwidth}{!}{%
 \begin{tabular}{|l|c|c|}
 \hline
 \multicolumn{1}{|c|}{Pre-Trained Model} & Classifier                                 & Accuracy \\ \hline
@@ -30,7 +29,6 @@ ResNet50                                & KNN                                   
 ResNet50                                & Naïve Bayes                                & 99.26\%  \\ \hline
 ResNet50                                & \multicolumn{1}{l|}{Discriminant Analysis} & 99.87\%  \\ \hline
 \end{tabular}%
-}
 \end{table}
 
 \subsection{Retraining the pretrained AlexNet}
