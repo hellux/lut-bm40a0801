@@ -121,13 +121,7 @@ evaluated. Weights of the closest class are adjusted with a function
 
 \subsection{Convolutional Neural Networks}
 % TODO intro
-Several pre-trained models used in transfer learning are based on large convolutional neural networks (CNN).Its high performance and its easiness in training are two of the main factors for its popularity in Machine Vision applications.
-A typical CNN consists of two parts:
-\begin{enumerate}
-	\item A convolutional base, composed of a stack of convolutional and pooling layers. The main goal of the convolutional base is to generate features from the image
-	\item A classifier, composed of fully connected layers that seek to classify the images based on the detected features.
-\end{enumerate}
-An important aspect of these CNNs is that they can automatically learn hierarchical feature representations. This implies that features computed by the first layer of the CNN are very general and can be easily reused in different domains, while on the other hand the features computed by the last layer of the CNN are specific and depend on the chosen dataset and task at hand. A few of the popular pre-trained models based on CNN are described in the upcoming subsections.
+Several pre-trained models used in transfer learning are based on large convolutional neural networks (CNN).Convolutional Neural Net is a hierarchical and sequential method of constructing heuristics to classify the content of an image. For example, one could try to identify drawings made about the side view of the car with a CNN. First layers of the net would have kernels to react to round shapes of the wheels and corners of the bodywork and windows, while deeper layer would identify circles of wheels and boxes of windows. When the number of the wheels is as expected and number of windows match some type of classified vehicles, the net asserts the selection of the image as an image of the car. In practice the contents of Kernels are initiated with random numbers. The kernel values, i.e. parameters, are learnt during the training phase.
 
 \subsubsection{AlexNet}
 AlexNet\cite{Alex}, which has been trained over a million images in the
