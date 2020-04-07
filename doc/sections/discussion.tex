@@ -6,9 +6,42 @@
 \begin{document}
 
 \section{Discussion}
+The results obtained by devising a classfier designed from the extracted
+features of a pre-trained network clearly performed the best. Although, the
+choice of the chosen classifier (SVM, Naive Bias etc.) didn't have a telling
+impact on the accuracy of the network. However, the superior performance of
+deeper networks can be seen by the fact that the features extracted by ResNet50
+outperfromed those of ResNet18 which in turn outperformed the AlexNet Features.
+Hence, the depth of the pre-trained models were of clear importance while
+utilizing such a classification approach.
 
-The results obtained by devising a classfier designed from the extracted features of a pre-trained network clearly performed the best. Although, the choice of the chosen classifier (SVM, Naive Bias etc.) didn't have a telling impact on the accuracy of the network. However, the superior performance of deeper networks can be seen by the fact that the features extracted by ResNet50 outperfromed those of ResNet18 which in turn outperformed the AlexNet Features. Hence, the depth of the pre-trained models were of clear importance while utilizing such a classification approach.
+The results obtained by retraining an AlexNet were comparable, if not better,
+to those obtained by the extracted features from the the pre-trained models.
+This could be primarily attributed to the simialrity between the ImageNet
+dataset and the provided dataset. Hence, we can conclude that this appraoch
+could be more suitable than the previous approach only in case the two datasets
+have marked differences between them.  
 
-The results obtained by retraining an AlexNet were comparable, if not better, to those obtained by the extarcted features from the the pre-trained models. This could be primarily attributed to the simialrity between the ImageNet Dataset and the provided Dataset. Hence, we can conclude that this appraoch could be more suitable than the previous approach only in case the two datasets have marked differences between them.  
+\subsection{Impact of features}
+The biggest impact on accuracy was the choice of features rather than the
+choice of classifier. All classifiers performed similarly when using the same
+features while the accuracy varied wildly with different features.
+
+The features extracted by the CNN clearly performed better than the features
+using LBP, SURF or simply pixel intensity values or combinations of those. Not
+many types of features were tested though, and it's possible that with the
+right set of features the same performance can be reached as with the CNN.
+
+\subsection{Transferability}
+It is important to consider if the results produced here are transferable to
+other similar datasets. Can the classifier be used to detect objects with the
+same accuracy from any photo or dataset? As we don't know the origin of the
+given dataset it is possible that there is an overlap of our test set and the
+training set for the CNNs that causes the classifer to be biased for those
+images.
+
+A very small test was performed to get an idea of how transferable the results
+are. The classifier still worked rather well but with less accuracy. The photos
+were however not cropped which may have worsened the results. 
     
 \end{document}

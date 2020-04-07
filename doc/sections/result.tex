@@ -2,12 +2,20 @@
 
 % Present the details of your experiments and their results.
 
+\newcommand{\err}{\cellcolor{red!25}}
+
 \begin{document}
 
 \section{Experiments and Results}
-% TODO
+% TODO intro
+
 \subsection{Feature Extraction from Pretrained AlexNet}
-Table 1 describes the performance of various classifers that were trained based on the features extracted from the last fully connected layer (FC8) of the AlexNet and the last pooling layers of ResNet18 and ResNet50. Image Augmnetation techniques such as translation and rotation seemed to be having a negative impact on the perfromance of these classifers and hence were not included in the results.
+Table 1 describes the performance of various classifers that were trained based
+on the features extracted from the last fully connected layer (FC8) of the
+AlexNet and the last pooling layers of ResNet18 and ResNet50. Image
+Augmnetation techniques such as translation and rotation seemed to be having a
+negative impact on the perfromance of these classifers and hence were not
+included in the results.
 
 \begin{table}[h]
 \centering
@@ -32,7 +40,15 @@ ResNet50                                & \multicolumn{1}{l|}{Discriminant Analy
 \end{table}
 
 \subsection{Retraining the pretrained AlexNet}
-The transfer learning model was trained over the training image datset using MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB of RAM. While the initial results from the trained classier were promising, by means of training data augmentation and optimization of the training parameters we are able to acheive a very accurate classifier while also reducing the training time by half. Table 2 depicts the effect of training parameters on the classifeir performance. The choice of the optimization parameters and their corresponding effects have been described briefly in the follwoing sub-sections.
+The transfer learning model was trained over the training image datset using
+MATLAB 2018b on a Windows 10 Operating System on a single core i3 CPU with 8GB
+of RAM. While the initial results from the trained classier were promising, by
+means of training data augmentation and optimization of the training parameters
+we are able to acheive a very accurate classifier while also reducing the
+training time by half. Table 2 depicts the effect of training parameters on the
+classifeir performance. The choice of the optimization parameters and their
+corresponding effects have been described briefly in the follwoing
+sub-sections.
 
 \begin{table}[h]
 \centering
@@ -58,7 +74,9 @@ A classifier using SOM was implemented and tested with different features.  The
 results are shown in table \ref{tbl:som}. LBP $W$x$H$/$n$ means that the images
 were resized to WxH and then split into $n\times n$ cells. The tiles produced
 by the SOM using the AlexNet and LBP 100x100/16 are shown in figure
-\ref{fig:som_tiles}.
+\ref{fig:som_tiles}. The time shown is the total time to train and evaluate the
+classifier. It may vary for different computers but it gives a rough estimate
+of how computation intensive each setup is in comparison to each other.
     
 \begin{table}[h]
     \centering
@@ -95,5 +113,46 @@ by the SOM using the AlexNet and LBP 100x100/16 are shown in figure
     \caption{Test dataset plotted at tile location as predicted by classifier.}
     \label{fig:som_tiles}
 \end{figure}
+
+\subsubsection{Sample test}
+A very small sample test with 21 self taken photos were also tested using the
+SOM classifier with AlexNet features. The images were however not cropped like
+the training set as they were simply taken directly from a photo library. The
+classifications are listed in table \ref{tbl:sample}. 76\% of the pictures were
+classified correctly. Two of the cats that were outside in the grass were
+incorrectly classified as flowers. Two of the dogs were also classified as
+flowers but were inside and nothing green or colorful. A photo taken of a
+person from the side was classified as a dog.
+    
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+        object in photo & predicted object \\\hline
+        cat 1       & cat \\
+        cat 2       & \err flower \\
+        cat 3       & cat \\
+        cat 4       & cat \\
+        cat 5       & cat \\
+        cat 6       & \err flower \\
+        cat 7       & cat \\
+        cat 8       & cat \\
+        cat 9       & cat \\
+        cat 10      & cat \\
+        dog 1       & dog \\
+        dog 2       & \err flower \\
+        dog 3       & \err flower \\
+        flower 1    & flower \\
+        person 1    & person \\
+        person 2    & \err dog \\
+        person 3    & person \\
+        person 4    & person \\
+        person 5    & person \\
+        person 6    & person \\
+        person 7    & person \\
+    \end{tabular}%
+    \caption{Classifications of a small independent test sample.}
+    \label{tbl:sample}
+\end{table}
+
 
 \end{document}
