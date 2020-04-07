@@ -55,8 +55,10 @@ The transfer learning model was trained over the training image datset using MAT
 
 \subsection{Experiments with self-organizing map}
 A classifier using SOM was implemented and tested with different features.  The
-results are shown in table \ref{tbl:som}. LBP $W$x$H$/$n$ means that the
-images were resized to WxH and then split into $n\times n$ cells.
+results are shown in table \ref{tbl:som}. LBP $W$x$H$/$n$ means that the images
+were resized to WxH and then split into $n\times n$ cells. The tiles produced
+by the SOM using the AlexNet and LBP 100x100/16 are shown in figure
+\ref{fig:som_tiles}.
     
 \begin{table}[h]
     \centering
@@ -76,5 +78,22 @@ images were resized to WxH and then split into $n\times n$ cells.
     \caption{Result of experiments, sorted by accuracy.}
     \label{tbl:som}
 \end{table}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[t]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{doc/fig/som_alex.png}
+        \caption{AlexNet.}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{doc/fig/som_lbp.png}
+        \caption{LBP 100x100/16}
+    \end{subfigure}%
+    \caption{Test dataset plotted at tile location as predicted by classifier.}
+    \label{fig:som_tiles}
+\end{figure}
 
 \end{document}
